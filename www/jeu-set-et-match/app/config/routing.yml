@@ -1,0 +1,23 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /admin
+
+fixture:
+    type:     rest
+    resource: AppBundle\Controller\RestFixtureController
+
+gameScore:
+    type:     rest
+    resource: AppBundle\Controller\RestGameScoreController
+
+gameStat:
+    type:     rest
+    resource: AppBundle\Controller\RestGameStatController

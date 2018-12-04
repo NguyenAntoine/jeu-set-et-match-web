@@ -1,0 +1,16 @@
+
+.table.table-hover tr {
+    cursor: pointer;
+}
+
+td.game {
+    font-weight: bold;
+}
+
+td.service {
+    border-left: hidden;
+}
+
+.timer {
+    display: inline-block;
+}

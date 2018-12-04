@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Jeu Set et Match{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('/bundles/app/bootstrap/css/bootstrap.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('/bundles/app/font-awesome/css/font-awesome.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('/bundles/app/datatables/dataTables.bootstrap4.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('/bundles/app/css/sb-admin.css') }}"/>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body class="fixed-nav sticky-footer bg-dark" id="page-top">
+        {{ include("navbar.html.twig") }}
+        <div class="content-wrapper">
+            <div class="container-fluid">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-dismissible alert-{{ label }}">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% block body %}{% endblock %}
+            </div>
+        </div>
+        <footer class="sticky-footer">
+            <div class="container">
+                <div class="text-center">
+                    <small>Copyright © Jeu Set et Match 2018</small>
+                </div>
+            </div>
+        </footer>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <script src="{{ asset('/bundles/app/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('/bundles/app/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('/bundles/app/jquery-easing/jquery.easing.min.js') }}"></script>
+        <script src="{{ asset('/bundles/app/datatables/jquery.dataTables.js') }}"></script>
+        <script src="{{ asset('/bundles/app/datatables/dataTables.bootstrap4.js') }}"></script>
+        <script src="{{ asset('/bundles/app/js/sb-admin.min.js') }}"></script>
+        <script src="{{ asset('/bundles/app/js/sb-admin-datatables.min.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

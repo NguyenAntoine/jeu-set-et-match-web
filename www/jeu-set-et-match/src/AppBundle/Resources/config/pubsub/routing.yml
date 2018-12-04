@@ -1,0 +1,7 @@
+fixture_topic:
+    channel: fixture/{id_fixture}
+    handler:
+        callback: 'fixture.topic' #related to the getName() of your topic
+    requirements:
+        id_fixture:
+            pattern: \d+

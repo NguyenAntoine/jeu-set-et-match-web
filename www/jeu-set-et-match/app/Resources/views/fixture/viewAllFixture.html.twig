@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/bundles/app/css/style.css') }}"/>
+{% endblock %}
+
+{% block body %}
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> {{ tournament.name }}
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Joueur 1</th>
+                        <th>Joueur 2</th>
+                        <th>Court</th>
+                        <th>Arbitre</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for fixture in fixtures %}
+                        <tr onclick="window.location.href='{{ path('fixture', {'idFixture': fixture.id}) }}'">
+                            <td>{{ fixture.firstRegistration }}</td>
+                            <td>{{ fixture.secondRegistration }}</td>
+                            <td>{{ fixture.court }}</td>
+                            <td>{{ fixture.referee }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('/bundles/app/js/script.js') }}"></script>
+{% endblock %}
+

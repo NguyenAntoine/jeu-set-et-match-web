@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/bundles/app/css/style.css') }}"/>
+{% endblock %}
+
+{% block body %}
+    <div class="card mb-3">
+        <div class="id-fixture" data-fixture-id="{{ fixtureId }}"></div>
+        {% if time is defined and time is not empty %}
+            <div class="card-header">
+            <input type="hidden" id="time" value="{{ time }}"/>
+            Temps du match :
+            <div class="timer"></div>
+            </div>
+        {% endif %}
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered score">
+                    <tbody>
+                    <tr>
+                        <td class="player">
+                            {% for player in firstPlayers %}
+                                <img src="{{ '/images/' ~ player.imageName ~ '.jpg' }}" alt="{{ player }}" height="64"
+                                     width="42">
+                                {{ player }}
+                                {% if loop.index == 1 and loop.length > 1 %} / {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td class="service"></td>
+                        {% for set in setScore %}
+                            <td class="set {% if loop.last %}set-last-first{% endif %} align-middle">{{ set.firstRegistrationGames }}</td>
+                        {% endfor %}
+                        <td class="first-player game align-middle">{{ firstPlayerPoint }}</td>
+                    </tr>
+                    <tr>
+                        <td class="player">
+                            {% for player in secondPlayers %}
+                                <img src="{{ '/images/' ~ player.imageName ~ '.jpg' }}" alt="{{ player }}" height="64"
+                                     width="42">
+                                {{ player }}
+                                {% if loop.index == 1 and loop.length > 1 %} / {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td class="service"></td>
+                        {% for set in setScore %}
+                            <td class="set {% if loop.last %}set-last-second{% endif %} align-middle">{{ set.secondRegistrationGames }}</td>
+                        {% endfor %}
+                        <td class="second-player game align-middle">{{ secondPlayerPoint }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer">
+
+            {% if fixtureResult is empty %}
+                {% for stat in gameStat %}
+                    <p class="card-text">{{ stat.stat }} pour {{ stat.registration }}
+                        à {{ stat.datetime|date('H:i:s') }}</p>
+                {% endfor %}
+            {% else %}
+                <p class="card-text">{{ fixtureResult }} gagne cette rencontre</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ ws_client() }}
+    <script src="{{ asset('/bundles/app/js/websocket.js') }}"></script>
+    <script src="{{ asset('/bundles/app/js/script.js') }}"></script>
+{% endblock %}
+
