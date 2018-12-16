@@ -12,10 +12,8 @@ services:
             - ./apache/php:/var/www/php.d
             - ./apache/:/docker-entrypoint-init.d
         restart: always
-        environment:
-            - VIRTUAL_HOST=jeusetetmatch.nguyenantoine.com
-            - LETSENCRYPT_HOST=jeusetetmatch.nguyenantoine.com
-            - LETSENCRYPT_EMAIL=antoine.ngu@outlook.fr
+        env_file:
+            - .env
         links:
             - db
         networks:

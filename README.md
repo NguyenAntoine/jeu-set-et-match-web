@@ -16,9 +16,12 @@ d'un match de tennis en temps réel.
 
 ## Déploiement par Docker
 
-Remarque : Vous devez avoir Docker.
+Remarque : Vous devez avoir Docker
 
 ### Avoir son propre environnement de développement
+
+Create the `.env` file from [.env.dist](.env.dist) example with the
+environment variables from [docker let's encrypt nginx proxy](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion/wiki/Basic-usage)
 
 Pour avoir une composition de l'application,
 vous devez utiliser la commande suivant dans la répertoire 
@@ -28,15 +31,19 @@ vous devez utiliser la commande suivant dans la répertoire
 $ docker-compose up -d
 ```
 
+### Update docker images
+
+```bash
+./updateDockerImages.sh
+```
+
 ### Image apache
 
-On utilise une image php7-apache.
-// à faire
+On utilise une image php7.1.2-apache personnalisée
 
 ### Image mySQL
 
-On utilise une image mysql5.7.
-// à faire
+On utilise une image mysql5.7 personnalisée
 
 ### Image phpmyadmin
 
